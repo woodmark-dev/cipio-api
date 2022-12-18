@@ -28,6 +28,8 @@ app.use(express.json());
 // extra packages
 
 app.get('/', (req, res) => {
+  const baseUrl = req.get('host');
+  console.log(baseUrl);
   res.send('Cipio Api');
 });
 
