@@ -27,7 +27,7 @@ const sendUserMail = async (req, res) => {
       sender,
       to: receiverEmail,
       subject: 'CIPIO FINANCE Email Verification',
-      htmlContent: `<p>Click the link to verify your email:</p> <a href="https://cipio-api-01.herokuapp.com/api/v1/verify-user-email?email=${email}&verificationToken=${verificationToken}">Verify Email</a>`,
+      htmlContent: `<p>Click the link to verify your email:</p> <a href="https://cipio-api.herokuapp.com/api/v1/verify-user-email?email=${email}&verificationToken=${verificationToken}">Verify Email</a>`,
     };
 
     await tranEmail.sendTransacEmail(mailOptions);
@@ -51,7 +51,7 @@ const sendMarchantMail = async (req, res) => {
       sender,
       to: receiverEmail,
       subject: 'CIPIO FINANCE Email Verification',
-      htmlContent: `<p>Click the link to verify your email:</p> <a href="https://cipio-api-01.herokuapp.com/api/v1/verify-marchant-email?email=${email}&verificationToken=${verificationToken}">Verify Email</a>`,
+      htmlContent: `<p>Click the link to verify your email:</p> <a href="https://cipio-api.herokuapp.com/api/v1/verify-marchant-email?email=${email}&verificationToken=${verificationToken}">Verify Email</a>`,
     };
 
     await tranEmail.sendTransacEmail(mailOptions);
