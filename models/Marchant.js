@@ -21,6 +21,7 @@ const MarchantSchema = new mongoose.Schema({
   walletAddress: {
     type: String,
     required: [true, 'Please provide your wallet address'],
+    unique: true,
   },
   password: {
     type: String,
