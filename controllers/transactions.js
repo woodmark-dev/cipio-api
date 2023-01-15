@@ -4,10 +4,6 @@ const Transactions = require('../models/Transactions');
 const { BadRequestError } = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
-const transactionDate = date.toLocaleString('en-GB', {
-  timeZone: 'Africa/Lagos',
-});
-
 const creditUserWallet = async (req, res) => {
   const { passcode, userId } = req.query;
   const { amount } = req.body;
