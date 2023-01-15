@@ -11,9 +11,8 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     required: [true, 'provide the entity that created the transaction'],
   },
-  transactionDateAndTime: {
+  transactionDate: {
     type: String,
-    default: date.toLocaleString('en-GB', { timeZone: 'Africa/Lagos' }),
   },
   transactionDetails: {
     type: String,

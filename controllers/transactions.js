@@ -4,6 +4,12 @@ const Transactions = require('../models/Transactions');
 const { BadRequestError } = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
+const date = new Date();
+
+const transactionDate = date.toLocaleString('en-GB', {
+  timeZone: 'Africa/Lagos',
+});
+
 const creditUserWallet = async (req, res) => {
   const { passcode, userId } = req.query;
   const { amount } = req.body;
@@ -29,6 +35,7 @@ const creditUserWallet = async (req, res) => {
     transactionDetails: 'User has been successfully credited',
     transactionType: 'credit',
     transactionAmount: `${amount} CIPI`,
+    transactionDate,
     success: true,
   });
   res
@@ -61,6 +68,7 @@ const creditMarchantWallet = async (req, res) => {
     transactionDetails: 'Marchant has been successfully credited',
     transactionType: 'credit',
     transactionAmount: `${amount} Naira`,
+    transactionDate,
     success: true,
   });
   res
@@ -86,6 +94,7 @@ const debitUserWallet = async (req, res) => {
         'Transaction was not successful because User does not have sufficient funds',
       transactionAmount: `${amount} CIPI`,
       transactionType: 'unsuccessful',
+      transactionDate,
     });
     throw new BadRequestError(
       "You don't have suffecient balance to carry out this transaction"
@@ -104,6 +113,7 @@ const debitUserWallet = async (req, res) => {
     transactionDetails,
     transactionType: 'debit',
     transactionAmount: `${amount} CIPI`,
+    transactionDate,
     success: true,
   });
   res
@@ -130,6 +140,7 @@ const debitMarchantWallet = async (req, res) => {
       transactionDetails:
         'Transaction was not successful because Marchant does not have sufficient funds',
       transactionType: 'unsuccessful',
+      transactionDate,
       transactionAmount: `${amount} Naira`,
     });
     throw new BadRequestError(
@@ -149,6 +160,7 @@ const debitMarchantWallet = async (req, res) => {
     transactionDetails,
     transactionType: 'debit',
     transactionAmount: `${amount} Naira`,
+    transactionDate,
     success: true,
   });
   res
@@ -177,6 +189,7 @@ const transferMarchantFund = async (req, res) => {
         'Transaction was not successful because Marchant does not have sufficient funds',
       transactionType: 'unsuccessful',
       transactionAmount: `${amount} Naira`,
+      transactionDate,
     });
     throw new BadRequestError(
       "You don't have sufficient amount for this transaction"
@@ -195,6 +208,7 @@ const transferMarchantFund = async (req, res) => {
         'Transaction was not successful because there is not marchant with the wallet address',
       transactionType: 'unsuccessful',
       transactionAmount: `${amount} Naira`,
+      transactionDate,
     });
     throw new BadRequestError(
       'Marchant with this wallet address does not exist'
@@ -224,6 +238,7 @@ const transferMarchantFund = async (req, res) => {
     transactionDetails: `You transfered ${amount} Naira to Marchant with wallet address: ${receiverWallet.walletAddress}`,
     transactionType: 'debit',
     transactionAmount: `${amount} Naira`,
+    transactionDate,
     success: true,
   });
   await Transactions.create({
@@ -232,6 +247,7 @@ const transferMarchantFund = async (req, res) => {
     transactionDetails: `You've recieved ${amount} Naira from Marchant with wallet address: ${senderWallet.walletAddress}`,
     transactionType: 'credit',
     transactionAmount: `${amount} Naira`,
+    transactionDate,
     success: true,
   });
 
