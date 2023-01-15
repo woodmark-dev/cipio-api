@@ -1,22 +1,6 @@
 const mongoose = require('mongoose');
 
-const a = new Date();
-const b = new Date(+a - a.getTimezoneOffset() + 3600000)
-  .toISOString()
-  .split('.')[0];
-
-const date = 'Date: ';
-
-const time = ' Time: ';
-
-c = b.slice(0, 10);
-
-d = b.slice(11);
-
-const concatDate = date.concat(c);
-const concatTime = time.concat(d);
-
-const concatDateTime = concatDate.concat(concatTime);
+const date = new Date();
 
 const TransactionSchema = new mongoose.Schema({
   userId: {
@@ -27,9 +11,9 @@ const TransactionSchema = new mongoose.Schema({
     type: String,
     required: [true, 'provide the entity that created the transaction'],
   },
-  transactionDate: {
+  transactionDateAndTime: {
     type: String,
-    default: concatDateTime,
+    default: date.toLocaleString('en-GB', { timeZone: 'Africa/Lagos' }),
   },
   transactionDetails: {
     type: String,
