@@ -17,7 +17,7 @@ async function runApp() {
     chain,
   });
 
-  console.log(response.toJSON().usdPrice);
+  return response.toJSON().usdPrice;
 }
 
 async function getCoinPrice(req, res) {
