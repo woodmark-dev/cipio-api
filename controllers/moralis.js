@@ -5,7 +5,7 @@ const { StatusCodes } = require('http-status-codes');
 
 async function runApp() {
   await Moralis.start({
-    apiKey: process.env.MORALIS_API_KEY,
+    apiKey: 'JhNUZ4tjmZv0IBmbh98KFEF3HephX5UmDfPfG2aPwuj1rFtcPMV9lBRGxoWZDlxn',
   });
 
   const address = '0xe68626f79b5C4CFA9686A091d3303E4c624DFeCf';
@@ -17,7 +17,7 @@ async function runApp() {
     chain,
   });
 
-  return response.toJSON().usdPrice;
+  console.log(response.toJSON().usdPrice);
 }
 
 async function getCoinPrice(req, res) {
