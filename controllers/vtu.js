@@ -1,28 +1,33 @@
 const { StatusCodes } = require('http-status-codes');
 const axios = require('axios');
+const { getTransaction, getTVTransaction } = require('../utils');
 
 async function buyAirtime(req, res) {
   const { transactionPurpose, number, network_id, airtime } = req.query;
+  getTransaction(transactionPurpose, number, network_id, airtime, res);
+}
 
-  async function getTransaction() {
-    try {
-      const response = await axios.get(
-        `https://vtu.ng/wp-json/api/v1/${transactionPurpose}?username=${process.env.VTU_NG_USERNAME}&password=${process.env.VTU_NG_PASSWORD}&phone=${number}&network_id=${network_id}&amount=${airtime}`
-      );
-      const { data } = response;
+async function buyData(req, res) {
+  const { transactionPurpose, number, network_id, v_id } = req.query;
+  getTransaction(transactionPurpose, number, network_id, v_id, res);
+}
 
-      res.status(StatusCodes.OK).json({
-        message: data.message,
-        code: data.code,
-        vtu_transaction_id: data.data.order_id,
-      });
-    } catch (error) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ code: error.code });
-    }
-  }
-  getTransaction();
+async function buyTV(req, res) {
+  const { transactionPurpose, number, service_id, smartcard_number, vID } =
+    req.query;
+
+  getTVTransaction(
+    transactionPurpose,
+    number,
+    service_id,
+    smartcard_number,
+    vID,
+    res
+  );
 }
 
 module.exports = {
   buyAirtime,
+  buyData,
+  buyTV,
 };
