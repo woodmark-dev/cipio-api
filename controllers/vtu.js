@@ -29,7 +29,7 @@ async function buyData(req, res) {
   async function getTransaction() {
     try {
       const response = await axios.get(
-        `https://vtu.ng/wp-json/api/v1/${transactionPurpose}?username=${process.env.VTU_NG_USERNAME}&password=${process.env.VTU_NG_PASSWORD}&phone=${number}&network_id=${network_id}&amount=${v_id}`
+        `https://vtu.ng/wp-json/api/v1/${transactionPurpose}?username=${process.env.VTU_NG_USERNAME}&password=${process.env.VTU_NG_PASSWORD}&phone=${number}&network_id=${network_id}&variation_id=${v_id}`
       );
       const { data } = response;
 
