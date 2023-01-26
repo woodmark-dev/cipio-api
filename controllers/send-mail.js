@@ -127,7 +127,7 @@ const sendMessageToAdmin = async (req, res) => {
 
   const receiverEmail = [
     {
-      email: 'cipiocipi973@gmail.com',
+      email: 'ibrahimayuba393@gmail.com',
     },
   ];
 
