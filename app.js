@@ -43,10 +43,10 @@ app.use('/api/v1', verifyEmail);
 app.use('/api/v1', sendMail);
 app.use('/api/v1/metrics', metrics);
 app.use('/api/v1', cipioCoinPrice);
-app.use('/api/v1', buy);
 
 app.use('/api/v1/transactions', auth, transactions);
 app.use('/api/v1', auth, admin);
+app.use('/api/v1', auth, buy);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
