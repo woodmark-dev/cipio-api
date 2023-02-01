@@ -5,7 +5,7 @@ const { BadRequestError } = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({}).limit(30);
   if (!users) {
     throw new BadRequestError('No users found');
   }
@@ -25,7 +25,7 @@ const getSingleUser = async (req, res) => {
 };
 
 const getAllUsersTransactions = async (req, res) => {
-  const transactions = await Transactions.find({ createdBy: 'user' });
+  const transactions = await Transactions.find({ createdBy: 'user' }).limit(30);
   if (!transactions) {
     throw new BadRequestError('No transactions found');
   }
@@ -33,7 +33,7 @@ const getAllUsersTransactions = async (req, res) => {
 };
 
 const getAllMarchants = async (req, res) => {
-  const marchants = await Marchant.find({});
+  const marchants = await Marchant.find({}).limit(30);
   if (!marchants) {
     throw new BadRequestError('No marchants found');
   }
@@ -53,7 +53,9 @@ const getSingleMarchant = async (req, res) => {
 };
 
 const getAllMarchantsTransactions = async (req, res) => {
-  const transactions = await Transactions.find({ createdBy: 'marchant' });
+  const transactions = await Transactions.find({ createdBy: 'marchant' }).limit(
+    30
+  );
   if (!transactions) {
     throw new BadRequestError('No transactions found');
   }
@@ -73,7 +75,7 @@ const getTransactionById = async (req, res) => {
 };
 
 const getAllUnapprovedMarchants = async (req, res) => {
-  const marchants = await Marchant.find({ approved: false });
+  const marchants = await Marchant.find({ approved: false }).limit(30);
   if (!marchants) {
     throw new BadRequestError('All marchants have been approved');
   }

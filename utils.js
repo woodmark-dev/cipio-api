@@ -14,4 +14,21 @@ async function runApp() {
   return response.toJSON().usdPrice;
 }
 
-module.exports = { runApp };
+function getDate() {
+  const year = new Date().getFullYear().toString();
+  const month = new Date().getMonth() + 1;
+  const currentMonth =
+    month.toString().length === 1 ? `0${month.toString()}` : month.toString();
+  const date = new Date().getDate().toString();
+  const hours = new Date().getHours();
+  const currentHour =
+    hours.toString().length === 1 ? `0${hours.toString()}` : hours.toString();
+  const minute = new Date().getMinutes().toString();
+
+  const time = year + currentMonth + date + currentHour + minute;
+  const randomStr = 'ad8ef08acd8f';
+
+  return time + randomStr;
+}
+
+module.exports = { runApp, getDate };

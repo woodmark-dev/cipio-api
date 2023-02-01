@@ -21,6 +21,7 @@ const sendMail = require('./routes/send-email');
 const verifyEmail = require('./routes/verify-email');
 const cipioCoinPrice = require('./routes/moralis');
 const buy = require('./routes/vtu');
+const jamb = require('./routes/vtpass');
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -45,6 +46,7 @@ app.use('/api/v1/metrics', metrics);
 app.use('/api/v1', cipioCoinPrice);
 
 app.use('/api/v1/transactions', auth, transactions);
+app.use('/api/v1', auth, jamb);
 app.use('/api/v1', auth, admin);
 app.use('/api/v1', auth, buy);
 

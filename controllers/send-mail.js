@@ -123,18 +123,18 @@ const updateMarchantPassword = async (req, res) => {
 };
 
 const sendMessageToAdmin = async (req, res) => {
-  const { transactionDetails } = req.query;
+  const { transactionDetails, email } = req.query;
 
   const receiverEmail = [
     {
-      email: 'cipiocipi973@gmail.com',
+      email,
     },
   ];
 
   const mailOptions = {
     sender,
     to: receiverEmail,
-    subject: 'CIPIO FINANCE A transaction has occured',
+    subject: 'CIPIO FINANCE Your Jamb Pin is Here',
     htmlContent: `<p>${transactionDetails}</p>`,
   };
 
