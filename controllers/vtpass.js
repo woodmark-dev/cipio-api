@@ -25,6 +25,7 @@ async function fetchCandidate(req, res) {
     );
 
     const { content } = response.data;
+    console.log(getDate());
 
     res.status(StatusCodes.OK).json({ content });
   } catch (error) {

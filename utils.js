@@ -20,7 +20,7 @@ function getDate() {
   const currentMonth =
     month.toString().length === 1 ? `0${month.toString()}` : month.toString();
   const date = new Date().getDate().toString();
-  const hours = new Date().getHours();
+  const hours = new Date().getHours() + 1;
   const currentHour =
     hours.toString().length === 1 ? `0${hours.toString()}` : hours.toString();
   const minute = new Date().getMinutes().toString();
