@@ -24,8 +24,12 @@ function getDate() {
   const currentHour =
     hours.toString().length === 1 ? `0${hours.toString()}` : hours.toString();
   const minute = new Date().getMinutes().toString();
+  const currentMinute =
+    minute.toString().length === 1
+      ? `0${minute.toString()}`
+      : minute.toString();
 
-  const time = year + currentMonth + date + currentHour + minute;
+  const time = year + currentMonth + date + currentHour + currentMinute;
   const randomStr = 'ad8ef08acd8f';
 
   return time + randomStr;
