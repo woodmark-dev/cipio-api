@@ -20,6 +20,8 @@ function getDate() {
   const currentMonth =
     month.toString().length === 1 ? `0${month.toString()}` : month.toString();
   const date = new Date().getDate().toString();
+  const cuurentDate =
+    date.toString().length === 1 ? `0${date.toString()}` : date.toString();
   const hours = new Date().getHours() + 1;
   const currentHour =
     hours.toString().length === 1 ? `0${hours.toString()}` : hours.toString();
@@ -29,7 +31,7 @@ function getDate() {
       ? `0${minute.toString()}`
       : minute.toString();
 
-  const time = year + currentMonth + date + currentHour + currentMinute;
+  const time = year + currentMonth + cuurentDate + currentHour + currentMinute;
   const randomStr = 'ad8ef08acd8f';
 
   return time + randomStr;
