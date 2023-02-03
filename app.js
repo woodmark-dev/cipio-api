@@ -31,9 +31,7 @@ app.use(express.json());
 // app.use(cookieParser());
 // extra packages
 
-app.get('/', (req, res) => {
-  const baseUrl = req.get('host');
-  console.log(baseUrl);
+app.get('/', (_, res) => {
   res.send('Cipio Api');
 });
 
