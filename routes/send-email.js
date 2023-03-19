@@ -8,6 +8,7 @@ const {
   updateMarchantPassword,
   sendMessageToAdmin,
   sendRechargeMessageToAdmin,
+  sendElectricityBillReceipt,
 } = require('../controllers/send-mail');
 
 router.get('/send-user-verification-email', sendUserMail);
@@ -16,5 +17,6 @@ router.get('/user-forgot-password', updateUserPassword);
 router.get('/marchant-forgot-password', updateMarchantPassword);
 router.get('/send-email-to-admin', sendMessageToAdmin);
 router.get('/send-recharge-email-to-admin', sendRechargeMessageToAdmin);
+router.get('/send-electric-receipt', sendElectricityBillReceipt);
 
 module.exports = router;

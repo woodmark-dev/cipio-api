@@ -97,8 +97,44 @@ async function fetchTransactionStatus(req, res) {
   }
 }
 
+//Converting to vtu
+async function verifyMeterDetails(req, res) {
+  //variation ID is hard-coded because we only have prepaid for now
+  const { customer_id, service_id } = req.query;
+  try {
+    const response = await axios.get(
+      `https://vtu.ng/wp-json/api/v1/verify-customer?username=${process.env.VTU_NG_USERNAME}&password=${process.env.VTU_NG_PASSWORD}&customer_id=${customer_id}&service_id=${service_id}&variation_id=prepaid`
+    );
+
+    const {
+      data: { data },
+    } = response;
+
+    res.status(StatusCodes.OK).json({ data });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+}
+
+async function rechargeMeter(req, res) {
+  const { meter_number, service_id, amount, phone } = req.query;
+  try {
+    const response = await axios.get(
+      `https://vtu.ng/wp-json/api/v1/electricity?username=${process.env.VTU_NG_USERNAME}&password=${process.env.VTU_NG_PASSWORD}&phone=${phone}&meter_number=${meter_number}&service_id=${service_id}&variation_id=prepaid&amount=${amount}`
+    );
+
+    const { data } = response;
+
+    res.status(StatusCodes.OK).json({ data });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+}
+
 module.exports = {
   fetchCandidate,
   payForJamPin,
   fetchTransactionStatus,
+  verifyMeterDetails,
+  rechargeMeter,
 };
